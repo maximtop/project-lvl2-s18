@@ -1,0 +1,46 @@
+{
+  "name": "maximtop-gendiff",
+  "version": "0.0.2",
+  "description": "Compares two configuration files and shows a difference.",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "test": "jest",
+    "babel-node": "babel-node",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "eslint": "eslint --ext=js src"
+  },
+  "bin": {
+    "gendiff": "./dist/bin/index.js"
+  },
+  "keywords": [
+    "hexlet",
+    "project",
+    "generate",
+    "differencies"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maximtop/project-lvl2-s18.git"
+  },
+  "author": "Maxim Topciu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maximtop/project-lvl2-s18/issues"
+  },
+  "homepage": "https://github.com/maximtop/project-lvl2-s18#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-eslint": "*",
+    "babel-preset-env": "^1.1.8",
+    "babel-preset-stage-0": "^6.16.0",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-plugin-import": "*",
+    "jest": "*"
+  },
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}
