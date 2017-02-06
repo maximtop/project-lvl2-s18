@@ -1,6 +1,6 @@
 {
-  "name": "maximtop-gendiff",
-  "version": "0.0.2",
+  "name": "max-gendiff",
+  "version": "0.0.4",
   "description": "Compares two configuration files and shows a difference.",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "eslint": "eslint --ext=js src"
   },
   "bin": {
-    "gendiff": "./dist/bin/index.js"
+    "gendiff": "./dist/bin/gendiff.js"
   },
   "keywords": [
     "hexlet",
