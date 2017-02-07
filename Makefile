@@ -8,7 +8,7 @@ build: clean
 	npm run build
 
 run:
-	npm run babel-node -- 'src/bin/gendiff.js' -h
+	npm run babel-node -- 'src/bin/gendiff.js' test1.json test2.json
 
 test:
 	npm run test
