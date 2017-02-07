@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const flatJson = (data1, data2) => {
+const genFlatJsonDiff = (data1, data2) => {
   const object1 = JSON.parse(data1);
   const object2 = JSON.parse(data2);
   const keys = _.uniq(_.concat(_.keys(object1), _.keys(object2)));
@@ -19,4 +19,4 @@ const flatJson = (data1, data2) => {
   return `{${string}\n}`;
 };
 
-export default flatJson;
+export default genFlatJsonDiff;
