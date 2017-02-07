@@ -2,12 +2,11 @@ import commander from 'commander';
 import fs from 'fs';
 import genFlatJsonDiff from './flatjson';
 
-const getDataByPath = (path) => {
-  return fs.readFileSync(path);
-};
+const getDataByPath = path => fs.readFileSync(path);
 
 const gendiff = (firstConfigPath, secondConfigPath) => {
-  let data1, data2;
+  let data1;
+  let data2;
   if (typeof firstConfigPath === 'undefined' && typeof firstConfigPath === 'undefined') {
     const program = commander;
     program

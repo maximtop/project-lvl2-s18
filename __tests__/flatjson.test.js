@@ -20,6 +20,6 @@ const expected = `{
   + verbose: true
 }`;
 
-test('Generate diff on flat json', () => {
+test('Generate diff on flat json data', () => {
   expect(flatJson(data1, data2)).toBe(expected);
 });
