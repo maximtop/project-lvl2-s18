@@ -1,10 +1,12 @@
-import jsonParser from './json';
-import yamlParser from './yaml';
+import parseJson from './json';
+import parseYaml from './yaml';
+import parseIni from './ini';
 
 const extensions = {
-  yml: yamlParser,
-  yaml: yamlParser,
-  json: jsonParser,
+  yml: parseYaml,
+  yaml: parseYaml,
+  json: parseJson,
+  ini: parseIni,
 };
 
 const parser = extension => extensions[extension];
