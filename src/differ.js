@@ -1,8 +1,6 @@
 import _ from 'lodash';
 
-const genFlatJsonDiff = (data1, data2) => {
-  const object1 = JSON.parse(data1);
-  const object2 = JSON.parse(data2);
+const differ = (object1, object2) => {
   const keys = _.uniq(_.concat(_.keys(object1), _.keys(object2)));
   const string = _.reduce(keys, (acc, key) => {
     if (_.has(object1, key) && _.has(object2, key)) {
@@ -19,4 +17,4 @@ const genFlatJsonDiff = (data1, data2) => {
   return `{${string}\n}`;
 };
 
-export default genFlatJsonDiff;
+export default differ;

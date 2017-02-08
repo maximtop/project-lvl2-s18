@@ -1,28 +1,16 @@
-import commander from 'commander';
 import fs from 'fs';
-import genFlatJsonDiff from './flatjson';
+import path from 'path';
+import parser from './parsers/parser';
+import differ from './differ';
 
-const getDataByPath = path => fs.readFileSync(path);
+const getDataByPath = confPath => fs.readFileSync(confPath, 'utf-8');
 
-const gendiff = (firstConfigPath, secondConfigPath) => {
-  let data1;
-  let data2;
-  if (typeof firstConfigPath === 'undefined' && typeof firstConfigPath === 'undefined') {
-    const program = commander;
-    program
-      .version('1.0.0')
-      .description('Compares two configuration files and shows a difference.')
-      .arguments('<firstConfig> <secondConfig>')
-      .action((firstConfig, secondConfig) => {
-        [data1, data2] = [getDataByPath(firstConfig), getDataByPath(secondConfig)];
-      });
-    program
-      .option('-f, --format [type]', 'Output format')
-      .parse(process.argv);
-  } else {
-    [data1, data2] = [getDataByPath(firstConfigPath), getDataByPath(secondConfigPath)];
-  }
-  console.log(genFlatJsonDiff(data1, data2));
+const gendiff = (path1, path2) => {
+  const [data1, data2] = [getDataByPath(path1), getDataByPath(path2)];
+  const extension = path.extname(path1).substr(1);
+  const object1 = parser(extension)(data1);
+  const object2 = parser(extension)(data2);
+  return (differ(object1, object2));
 };
 
 export default gendiff;
