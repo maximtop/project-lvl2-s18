@@ -1,6 +1,6 @@
 {
   "name": "max-gendiff",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Compares two configuration files and shows a difference.",
   "main": "dist/index.js",
   "scripts": {
@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
+    "js-yaml": "^3.8.1",
     "lodash": "^4.17.4"
   }
 }
