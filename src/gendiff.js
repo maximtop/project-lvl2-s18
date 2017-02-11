@@ -12,9 +12,8 @@ const gendiff = (path1, path2) => {
   const extension = path.extname(path1).substr(1);
   const object1 = parser(extension)(data1);
   const object2 = parser(extension)(data2);
-  const json = getJson(differ(object1, object2));
-  console.log(JSON.stringify(json, null, '  '));
-  return getString(json);
+  const string = getString(differ(object1, object2));
+  return string;
 };
 
 export default gendiff;

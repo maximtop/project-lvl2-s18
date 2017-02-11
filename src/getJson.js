@@ -3,7 +3,9 @@ const getJson = (ast) => {
   return ast.reduce((acc, obj) => {
     acc[obj.name] = {
       type: obj.type,
-      data: obj.data instanceof Array ? getJson(obj.data) : obj.data,
+      oldValue: obj.oldValue,
+      newValue: obj.newValue,
+      children: obj.children instanceof Array ? getJson(obj.children) : obj.children,
     };
     return acc;
   }, {})

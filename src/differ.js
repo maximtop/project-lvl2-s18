@@ -7,22 +7,21 @@ const differ = (object1, object2) => {
       const value1 = object1[key];
       const value2 = object2[key];
       if(typeof(value1) === 'object' || typeof(value2) === 'object') {
-        acc.push({name:key, data: differ(value1, value2), type: 'unchanged' });
+        acc.push({type:'unchanged', name:key, children: differ(value1, value2)});
         return acc;
       }
       if (value1 === value2) {
-        acc.push({name:key, data:value2, type: 'unchanged'});
+        acc.push({type:'unchanged', name:key, oldValue:value2, });
         return acc;
       }
-      acc.push({name:key, data:value2, type: 'added'});
-      acc.push({name:key, data:value1, type: 'removed'});
+      acc.push({type:'changed', name:key, oldValue:value1, newValue: value2});
       return acc;
     }
     if (_.has(object1, key)) {
-      acc.push({name:key, data:object1[key], type: 'removed'});
+      acc.push({type:'removed', name:key, oldValue:object1[key], });
       return acc;
     }
-    acc.push({name:key, data:object2[key], type: 'added'});
+    acc.push({type:'added', name:key, newValue:object2[key], });
     return acc;
   }, []);
 };
