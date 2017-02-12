@@ -8,32 +8,24 @@ const isComplex = (obj) => {
   return `value: ${obj}`;
 };
 
-const genFullName = (name, parent) => {
-  return `${parent !== undefined ? `${parent}.` : ''}${name}`;
-};
+const genFullName = (name, parent) => `${parent !== undefined ? `${parent}.` : ''}${name}`;
 
 const getPlainText = (ast) => {
-  const iter = (astTree, parent) => {
-    return astTree.reduce((acc, obj) => {
-      if (obj.type === 'removed') {
-        acc.push(`Property ${chalk.red(genFullName(obj.name, parent))} was removed`);
-        return acc;
-      }
-      if (obj.type === 'added') {
-        acc.push(`Property ${chalk.green(genFullName(obj.name, parent))} was added with ${chalk.green(isComplex(obj.newValue))}`);
-        return acc;
-      }
-      if (obj.type === 'changed') {
-        acc.push(`Property ${chalk.yellow(genFullName(obj.name, parent))} was updated. From ${chalk.yellow(obj.oldValue)} to ${chalk.yellow(obj.newValue)}`);
-        return acc;
-      }
-      if (obj.type === 'unchanged' && obj.children !== undefined) {
-        acc.push(iter(obj.children, obj.name));
-        return acc;
-      }
-      return acc;
-    }, []);
-  };
+  const iter = (astTree, parent) => astTree.reduce((acc, obj) => {
+    if (obj.type === 'removed') {
+      return [...acc, `Property ${chalk.red(genFullName(obj.name, parent))} was removed`];
+    }
+    if (obj.type === 'added') {
+      return [...acc, `Property ${chalk.green(genFullName(obj.name, parent))} was added with ${chalk.green(isComplex(obj.newValue))}`];
+    }
+    if (obj.type === 'changed') {
+      return [...acc, `Property ${chalk.yellow(genFullName(obj.name, parent))} was updated. From ${chalk.yellow(obj.oldValue)} to ${chalk.yellow(obj.newValue)}`];
+    }
+    if (obj.type === 'unchanged' && obj.children !== undefined) {
+      return [...acc, iter(obj.children, obj.name)];
+    }
+    return acc;
+  }, []);
   return _.flatten(iter(ast)).join('\n');
 };
 
