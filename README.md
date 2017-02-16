@@ -11,7 +11,7 @@ Compare and reports the difference of 2 config files in json, yaml or ini format
 
 ## Local usage
 ```
-npm install config-compare-light
+npm install max-gendiff
 ```
 
 ## Global usage
